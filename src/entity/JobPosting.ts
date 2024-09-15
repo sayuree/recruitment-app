@@ -26,6 +26,9 @@ export class JobPosting {
   location: string;
 
   @Column()
+  company: string;
+
+  @Column()
   description: string;
 
   @ManyToOne(

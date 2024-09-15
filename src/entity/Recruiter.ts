@@ -12,7 +12,7 @@ import { JobPosting } from './JobPosting';
 @Entity()
 export class Recruiter {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ unique: true })
   email: string;
