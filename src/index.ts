@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const { PORT = 3000 } = process.env;
 
 app.use('/api/auth', authRouter);
-app.use('/api/jobPosting', jobPostingRouter);
-app.use('/api/jobApplication', jobApplicationRoute);
+app.use('/api/jobs', jobPostingRouter);
+app.use('/api/applications', jobApplicationRoute);
 app.use(errorHandler);
 
 AppDataSource.initialize()
