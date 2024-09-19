@@ -17,10 +17,10 @@ export class Recruiter {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ length: 50 })
   first_name: string;
 
-  @Column()
+  @Column({ length: 50 })
   last_name: string;
 
   @Column()
@@ -29,10 +29,8 @@ export class Recruiter {
   @OneToMany(() => JobPosting, (jobPosting) => jobPosting.recruiter)
   job_postings: JobPosting[];
 
-  @Column()
+  @Column({ length: 50 })
   company: string;
-
-  confirm_password: string;
 
   @CreateDateColumn({
     type: 'timestamp',

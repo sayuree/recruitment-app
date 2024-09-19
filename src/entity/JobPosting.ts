@@ -1,8 +1,10 @@
 import {
+  Check,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -12,23 +14,30 @@ import { Recruiter } from './Recruiter';
 import { JobApplication } from './JobApplication';
 
 @Entity()
+@Check('"min_salary" <= "max_salary"')
 export class JobPosting {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ length: 100 })
   title: string;
 
-  @Column({ type: 'int8range', nullable: true })
-  salary: string;
+  @Column()
+  min_salary: number;
+
+  @Column()
+  max_salary: number;
+
+  @Column({ length: 3 })
+  currency_code: string;
 
   @Column()
   location: string;
 
-  @Column()
+  @Column({ length: 50 })
   company: string;
 
-  @Column()
+  @Column('text')
   description: string;
 
   @ManyToOne(
@@ -37,6 +46,7 @@ export class JobPosting {
       recruiter.job_postings;
     },
   )
+  @JoinColumn({ name: 'recruiter_id' })
   recruiter: Recruiter;
 
   @OneToMany(
