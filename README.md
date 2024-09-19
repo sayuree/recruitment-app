@@ -5,16 +5,16 @@ This is a **backend** implementation of **Job Posting and Application Platform**
 This app provides APIs for job posting, job application management and includes basic JWT-based authentication.
 
 ### Setup Guide 
-1. Clone the repository
+#### 1. Clone the repository
 ```
 git clone https://github.com/yourusername/recruitment-app.git
 ```
-2. Install dependencies
+#### 2. Install dependencies
 ```
 cd recruitment-app/
 npm install
 ```
-3. Configure Environment Variables
+#### 3. Configure Environment Variables
 ```
 NODE_ENV=
 PORT=3000
@@ -39,20 +39,20 @@ JWT_EXPIRES_IN=your-jwt-expiration
 - `DB_NAME`
 - `DB_HOST`
 - `DB_PORT`
-4. Run the application
+#### 4. Run the application
 ```
 npm run dev
 ```
-5. API Endpoints
+#### 5. API Endpoints
 
-Job Posting API
-Create Job Posting: `POST /api/jobs`
-Update Job Posting: `PUT /api/jobs/:id`
-Delete Job Posting: `DELETE /api/jobs/:id`
-Fetch Job Postings: `GET /api/jobs` (pagination & filtering)
-Job Application API
-Submit Job Application: POST /api/applications
-Manage Job Applications: `GET /api/applications`, `PUT /api/applications/:id`, `DELETE /api/applications/:id`
-Authentication
-Signup: `POST /api/auth/signup`
-Login: `POST /api/auth/login`
+#### Job Posting API
+- Create Job Posting: `POST /api/jobs`
+- Update Job Posting: `PUT /api/jobs/:id`
+- Delete Job Posting: `DELETE /api/jobs/:id`
+- Fetch Job Postings: `GET /api/jobs` (pagination & filtering)
+#### Job Application API
+- Submit Job Application: POST /api/applications
+- Manage Job Applications: `GET /api/applications`, `PUT /api/applications/:id`, `DELETE /api/applications/:id`
+#### Authentication
+- Signup: `POST /api/auth/signup`
+- Login: `POST /api/auth/login`
