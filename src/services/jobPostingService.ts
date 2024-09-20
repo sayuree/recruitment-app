@@ -62,6 +62,7 @@ class JobPostingService {
     currentJobPosting.location = jobPosting.location;
     currentJobPosting.description = jobPosting.description;
     currentJobPosting.company = jobPosting.company;
+    currentJobPosting.currency_code = jobPosting.currency_code;
     const updatedJobPosting =
       await this.jobPostingRepository.save(currentJobPosting);
     const jobPostingUpdateResponse: IJobPostingUpdateResponse = {
@@ -71,7 +72,7 @@ class JobPostingService {
       currency_code: updatedJobPosting.currency_code,
       location: updatedJobPosting.location,
       company: updatedJobPosting.company,
-      description: updatedJobPosting.company,
+      description: updatedJobPosting.description,
       created_at: updatedJobPosting.created_at,
       updated_at: updatedJobPosting.updated_at,
     };
@@ -110,16 +111,17 @@ class JobPostingService {
       mimetype: file.mimetype,
     };
     const uploadedFile = await fileService.create(resumeData);
+    const recruiter = await recruiterService.get(jobPosting.id);
 
     const newJobApplication: IJobApplicationSubmit = {
       resume: uploadedFile,
       job_posting: jobPosting,
       applicant_name: jobApplication.applicant_name,
       applicant_email: jobApplication.applicant_email,
+      recruiter: recruiter,
     };
     const uploadedJobApplication =
       await jobApplicationService.create(newJobApplication);
-    const recruiter = await recruiterService.get(jobPosting.id);
     jobApplicationSubmittedEvent.emit('new-application', {
       title: jobPosting.title,
       recruiter,

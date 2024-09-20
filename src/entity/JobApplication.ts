@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { JobPosting } from './JobPosting';
 import { File } from './File';
+import { Recruiter } from './Recruiter';
 
 @Entity()
 export class JobApplication {
@@ -30,6 +31,15 @@ export class JobApplication {
   })
   @JoinColumn({ name: 'resume_id' })
   resume: File;
+
+  @ManyToOne(
+    () => Recruiter,
+    (recruiter) => {
+      recruiter.job_applications;
+    },
+  )
+  @JoinColumn({ name: 'recruiter_id' })
+  recruiter: Recruiter;
 
   @Column()
   applicant_name: string;

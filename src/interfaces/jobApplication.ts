@@ -1,6 +1,7 @@
 import { File } from '../entity/File';
 import { JobApplication } from '../entity/JobApplication';
 import { JobPosting } from '../entity/JobPosting';
+import { Recruiter } from '../entity/Recruiter';
 
 export interface IJobApplicatonCreateRequest {
   resume: Express.Multer.File;
@@ -21,6 +22,7 @@ export interface IJobApplicationSubmit {
   job_posting: JobPosting;
   applicant_name: string;
   applicant_email: string;
+  recruiter: Recruiter;
 }
 
 export interface IJobApplicationGetResponse {
