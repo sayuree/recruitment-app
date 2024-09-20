@@ -20,6 +20,7 @@ import { IFileUploadRequest } from '../interfaces/file';
 import { fileService } from './fileService';
 import { jobApplicationService } from './jobApplicationService';
 import jobApplicationSubmittedEvent from '../events/jobApplication';
+import { recruiterService } from './recruiterService';
 
 class JobPostingService {
   private jobPostingRepository: Repository<JobPosting>;
@@ -118,8 +119,10 @@ class JobPostingService {
     };
     const uploadedJobApplication =
       await jobApplicationService.create(newJobApplication);
+    const recruiter = await recruiterService.get(jobPosting.id);
     jobApplicationSubmittedEvent.emit('new-application', {
       title: jobPosting.title,
+      recruiter,
     });
     const jobApplicationResponse: IJobApplicationCreateResponse = {
       id: uploadedJobApplication.id,
