@@ -17,15 +17,18 @@ export class JobApplication {
 
   @ManyToOne(
     () => JobPosting,
-    (jobPosting) => {
-      jobPosting.job_applicatons;
+    (job_posting) => {
+      job_posting.job_applications;
     },
   )
   @JoinColumn({ name: 'job_posting_id' })
   job_posting: JobPosting;
 
-  @OneToOne(() => File, { eager: true, cascade: true })
-  @JoinColumn({ name: 'file_id' })
+  @OneToOne(() => File, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn({ name: 'resume_id' })
   resume: File;
 
   @Column()
