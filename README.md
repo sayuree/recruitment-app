@@ -62,10 +62,11 @@ JWT_EXPIRES_IN=your-jwt-expiration
 ```
 npm run dev
 ```
-#### 5. API Endpoints\
+#### 5. API Endpoints
+You can import Postman collection [here](https://drive.google.com/file/d/1YSdOuDi4-rj2rfXXwL3fCxCiJMZ6ji3Q/view?usp=sharing).
 🔐 - Endpoints tagged with the emoji require authentication
 #### Job Posting API
-#### Create Job Posting: `POST /api/jobs`\ 🔐
+#### Create Job Posting: `POST /api/jobs` 🔐
 **Description**: Create a job posting\
 ** Request Example **:\
 Body: <br>
@@ -95,10 +96,11 @@ Body: <br>
      "description": "You have to do 1 and 2"
    }
   ```
-#### Delete Job Posting: `DELETE /api/jobs/:id`\ 🔐
-**Description**: Delete a job posting (soft-delete)\
-#### Fetch Job Postings: `GET /api/jobs?page={#pageNumber}&limit={#limit}`\🔐
-**Description**: Get job postings using pagination and filtering by (location, title, minSalary, maxSalary, description, company)\
+#### Delete Job Posting: `DELETE /api/jobs/:id` 🔐
+**Description**: Delete a job posting (soft-delete)
+
+#### Fetch Job Postings: `GET /api/jobs?page={#pageNumber}&limit={#limit}`🔐
+**Description**: Get job postings using pagination and filtering by (location, title, minSalary, maxSalary, description, company)
   
 #### Job Application API
 ##### Submit Job Application: `POST /api/jobs/:id/apply`
