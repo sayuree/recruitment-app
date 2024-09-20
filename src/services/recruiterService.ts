@@ -19,7 +19,7 @@ export class RecruiterService {
     this.recruiterRepository = AppDataSource.getRepository(Recruiter);
   }
 
-  async create(
+  public async create(
     recruiter: IRecruiterCreateRequest,
   ): Promise<IRecruiterCreateResponse> {
     const filter = {
@@ -56,7 +56,7 @@ export class RecruiterService {
     return recruiterCreationResponse;
   }
 
-  async login(
+  public async login(
     recruiter: IRecruiterLoginRequest,
   ): Promise<IRecruiterLoginResponse> {
     const filter = {
@@ -82,9 +82,17 @@ export class RecruiterService {
     return { token: token };
   }
 
-  async findById(id: string): Promise<Recruiter | null> {
+  public async findById(id: string): Promise<Recruiter | null> {
     const filter = { id: id };
     return await this.recruiterRepository.findOneBy(filter);
+  }
+
+  public async get(job_posting_id: number): Promise<Recruiter> {
+    return await this.recruiterRepository
+      .createQueryBuilder('recruiter')
+      .leftJoinAndSelect('recruiter.job_postings', 'jobPosting')
+      .where('jobPosting.id = :id', { id: job_posting_id })
+      .getOne();
   }
 }
 

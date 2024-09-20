@@ -27,8 +27,6 @@ export class File {
   @CreateDateColumn()
   uploaded_at: Date;
 
-  @OneToOne(() => JobApplication, (jobApplication) => jobApplication.resume, {
-    nullable: true,
-  })
+  @OneToOne(() => JobApplication, (jobApplication) => jobApplication.resume)
   jobApplication: JobApplication;
 }
