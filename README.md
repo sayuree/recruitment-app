@@ -128,7 +128,7 @@ Body: <br>
     "first_name": "Jane",
     "last_name": "Doe",
     "company": "Meta",
-    "email":"john_hr@gmail.com"
+    "email":"jane_hr@gmail.com"
 }
 ```
 ##### Login: `POST /api/auth/login`
@@ -136,7 +136,7 @@ Body: <br>
 Body: <br>
 ```json
 {
-    "email": "bagdatt44@gmail.com",
+    "email": "jane_hr@gmail.com",
     "password": "1234werrR!"
 }
 ```
