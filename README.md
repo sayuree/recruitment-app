@@ -62,10 +62,10 @@ JWT_EXPIRES_IN=your-jwt-expiration
 ```
 npm run dev
 ```
-#### 5. API Endpoints
-
+#### 5. API Endpoints\
+🔐 - Endpoints tagged with the emoji require authentication
 #### Job Posting API
-#### Create Job Posting: `POST /api/jobs`\
+#### Create Job Posting: `POST /api/jobs`\ 🔐
 **Description**: Create a job posting\
 ** Request Example **:\
 Body: <br>
@@ -80,7 +80,7 @@ Body: <br>
       "description": "You have to do 1 and 2"
   }
   ```
-#### Update Job Posting: `PUT /api/jobs/:id`
+#### Update Job Posting: `PUT /api/jobs/:id` 🔐
 **Description**: Update a specific job posting\
 ** Request Example **:\
 Body: <br>
@@ -95,9 +95,9 @@ Body: <br>
      "description": "You have to do 1 and 2"
    }
   ```
-#### Delete Job Posting: `DELETE /api/jobs/:id`\
+#### Delete Job Posting: `DELETE /api/jobs/:id`\ 🔐
 **Description**: Delete a job posting (soft-delete)\
-#### Fetch Job Postings: `GET /api/jobs?page={#pageNumber}&limit={#limit}`\
+#### Fetch Job Postings: `GET /api/jobs?page={#pageNumber}&limit={#limit}`\🔐
 **Description**: Get job postings using pagination and filtering by (location, title, minSalary, maxSalary, description, company)\
   
 #### Job Application API
@@ -107,12 +107,34 @@ Body: <br>
 Body (form-data): <br>
   ```json
   {
-     "name": Alex,
-     "email": alex_dev@gmail.com,
+     "name": "John",
+     "email": "john_dev@gmail.com",
      "resume": file.pdf
    }
   ```
-##### Manage Job Applications: `GET /api/applications?page={#pageNumber}&limit={#limit}`, `PUT /api/applications/:id`
+##### Manage Job Applications: `GET /api/applications?page={#pageNumber}&limit={#limit}`🔐, `PUT /api/applications/:id/status`🔐
 #### Authentication
 ##### Signup: `POST /api/auth/signup`
+**Description**: Sign up a recruiter\
+** Request Example **:\
+Body: <br>
+  ```json
+{
+
+    "password": "1234werrR!",
+    "confirmPassword": "1234werrR!",
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "company": "Meta",
+    "email":"john_hr@gmail.com"
+}
+```
 ##### Login: `POST /api/auth/login`
+** Request Example **:\
+Body: <br>
+```json
+{
+    "email": "bagdatt44@gmail.com",
+    "password": "1234werrR!"
+}
+```
