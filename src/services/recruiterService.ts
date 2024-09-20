@@ -64,7 +64,6 @@ export class RecruiterService {
     };
 
     const recruiterFound = await this.recruiterRepository.findOneBy(filter);
-
     const isPasswordMatching = bcrypt.compareSync(
       recruiter.password,
       recruiterFound.password,

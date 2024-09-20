@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { JobPosting } from './JobPosting';
+import { JobApplication } from './JobApplication';
 
 @Entity()
 export class Recruiter {
@@ -28,6 +29,12 @@ export class Recruiter {
 
   @OneToMany(() => JobPosting, (jobPosting) => jobPosting.recruiter)
   job_postings: JobPosting[];
+
+  @OneToMany(
+    () => JobApplication,
+    (job_applications) => job_applications.recruiter,
+  )
+  job_applications: JobApplication[];
 
   @Column({ length: 50 })
   company: string;

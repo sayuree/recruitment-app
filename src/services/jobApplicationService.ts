@@ -26,10 +26,14 @@ class JobApplicationService {
   public async get(
     page: number,
     limit: number,
+    recruiter_id: string,
   ): Promise<IJobApplicationGetResponse> {
     const offset = (page - 1) * limit;
     const [jobApplications, total] = await this.jobApplicationRepository
-      .createQueryBuilder()
+      .createQueryBuilder('job_application')
+      .where('job_application.recruiter_id = :recruiter_id', {
+        recruiter_id: recruiter_id,
+      })
       .skip(offset)
       .take(limit)
       .getManyAndCount();
@@ -39,10 +43,17 @@ class JobApplicationService {
     };
   }
 
-  public async findOneById(id: number): Promise<JobApplication | null> {
-    const filter = { id: id };
-    const foundJobApplication =
-      await this.jobApplicationRepository.findOneBy(filter);
+  public async findOneById(
+    id: number,
+    recruiter_id: string,
+  ): Promise<JobApplication | null> {
+    const filter = { id: id, recruiter_id: recruiter_id };
+    const foundJobApplication = await this.jobApplicationRepository
+      .createQueryBuilder('job_application')
+      .where('job_application.recruiter_id = :recruiter_id', filter)
+      .andWhere('job_application.id = :id', { id: id })
+      .getOne();
+
     if (!foundJobApplication) {
       throw new AppError(
         ErrorCode.NOT_FOUND,
